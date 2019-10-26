@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <form th:action="@{/main}" method="post">
+        <input type="text" name="text" placeholder="Please enter text"/>
+        <input type="text" name="tag" placeholder="Please enter tag"/>
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+
+<div>
+    <form th:action="@{main}" method="get">
+        <input type="text" name="filter" placeholder="Please enter filter tag">
+        <input type="submit" value="Найти">
+    </form>
+</div>
+
+<div>Список сообщений</div>
+<div th:each="mes : ${messages}">
+    <b th:text="${mes.id}"></b>
+    <span th:text="${mes.text}"></span>
+    <i th:text="${mes.tag}"></i>
+    <strong th:text="${mes.getAuthorName()}"></strong>
+</div>
+</body>
+</html>
