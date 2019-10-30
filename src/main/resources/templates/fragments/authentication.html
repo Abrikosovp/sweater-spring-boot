@@ -1,0 +1,13 @@
+<div th:fragment="footer(aut)"  xmlns:th="http://www.thymeleaf.org">
+    <form th:action="@{${aut}}" method="post">
+        <div><label> Login: <input type="text" name="username" placeholder="Please enter user name"></label></div>
+        <div><label>Password: <input type="password" name="password" placeholder="Please enter user password"></label></div>
+        <button type="submit">Sig in</button>
+    </form>
+</div>
+
+<div th:fragment="logout(logout)"  xmlns:th="http://www.thymeleaf.org">
+    <form th:action="@{${logout}}" method="post">
+        <input type="submit" value="Sig Out">
+    </form>
+</div>

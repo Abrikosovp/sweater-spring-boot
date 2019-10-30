@@ -5,7 +5,11 @@
     <title>Title</title>
 </head>
 <body>
+<a th:href="@{/user}">href - user list</a>
 
+<div>
+    <th:block th:include="~{fragments/authentication :: logout('/logout')}" />
+</div>
 <div>
     <form th:action="@{/main}" method="post">
         <input type="text" name="text" placeholder="Please enter text"/>

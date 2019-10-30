@@ -5,18 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<div>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sig Out">
-    </form>
-</div>
+
 <div>Login page</div>
 <div>
-    <form th:action="@{/login}" method="post">
-        <div><label> Login: <input type="text" name="username" placeholder="Please enter user name"></label></div>
-        <div><label>Password: <input type="password" name="password" placeholder="Please enter user password"></label></div>
-        <button type="submit">Sig in</button>
-    </form>
+    <th:block th:insert="~{fragments/authentication :: footer('/login')}"/>
 </div>
 </body>
 </html>
