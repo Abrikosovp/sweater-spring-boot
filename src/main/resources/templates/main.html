@@ -1,40 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="~{fragments/head :: head('Main')}" />
+    <th:block th:include="~{fragments/style :: head('Main')}"/>
 </head>
 <body>
-<a th:href="@{/user}">href - user list</a>
-
-<div>
-    <th:block th:include="~{fragments/authentication :: logout('/logout')}" />
-</div>
-<div>
-    <form th:action="@{/main}" method="post" enctype="multipart/form-data">
-        <input type="text" name="text" placeholder="Please enter text"/>
-        <input type="text" name="tag" placeholder="Please enter tag"/>
-        <input type="file" name="file" placeholder="Please enter file">
-        <button type="submit">Добавить</button>
-    </form>
-</div>
-
-<div>
-    <form th:action="@{main}" method="get">
-        <input type="text" name="filter" placeholder="Please enter filter tag">
-        <input type="submit" value="Найти">
-    </form>
-</div>
-
-<div>Список сообщений</div>
-<div th:each="mes : ${messages}">
-    <b th:text="${mes.id}"></b>
-    <span th:text="${mes.text}"></span>
-    <i th:text="${mes.tag}"></i>
-    <strong th:text="${mes.getAuthorName()}"></strong>
-    <strong th:text="${mes.getAuthorName()}"></strong>
-    <div th:if="${mes.fileNameExist()}">
-        <img th:src="@{|/img/${mes.fileName}|}">
+<th:block th:include="~{fragments/navbarNavigation :: navbar}"/>
+<div class="container mt-5">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <form th:action="@{main}" method="get" class="form-inline">
+                <input type="text" name="filter" placeholder="Please enter filter tag" class="form-control">
+                <button type="submit" class="btn btn-primary ml-2">Search</button>
+            </form>
+        </div>
     </div>
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+       aria-controls="collapseExample">
+        Add new messages
+    </a>
+    <div class="collapse" id="collapseExample">
+        <div class="form-group mt-3">
+            <form th:action="@{/main}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="text" name="text" placeholder="Please enter text" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="tag" placeholder="Please enter tag" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input type="file" name="file" placeholder="Please enter file" id="customFile"
+                               class="form-control"/>
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Добавить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card-columns">
+        <div th:each="mes : ${messages}" class="card my-3">
+            <div th:if="${mes.fileNameExist()}" class="card-img-top">
+                <img th:src="@{|/img/${mes.fileName}|}">
+            </div>
+            <div class="m-2">
+                <span th:text="${mes.text}"></span>
+                <i th:text="${mes.tag}"></i>
+            </div>
+            <div th:text="${mes.getAuthorName()}" class="card-footer text-muted"></div>
+        </div>
+    </div>
+
 </div>
+<th:block th:include="~{fragments/style :: legs}"/>
 </body>
 </html>

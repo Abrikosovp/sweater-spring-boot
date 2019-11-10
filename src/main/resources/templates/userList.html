@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="~{fragments/head :: head('User list')}" />
+    <th:block th:include="~{fragments/style :: head('User list')}"/>
 </head>
 <body>
+<th:block th:include="~{fragments/navbarNavigation :: navbar}"/>
+<div class="container mt-5">
+    <div>
+        <table>
+            <thead>
+            <tr>Name</tr>
+            <tr>Role</tr>
+            <tr></tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.username}"></td>
+                <td th:each="role : ${user.roles}" th:text="${role}"></td>
+                <td><a th:href="@{|/user/${user.id}|}">edit</a></td>
+            </tr>
 
-<div>
-    <table>
-        <thead>
-        <tr>Name</tr>
-        <tr>Role</tr>
-        <tr></tr>
-        </thead>
-        <tbody>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.username}"></td>
-            <td th:each="role : ${user.roles}" th:text="${role}"></td>
-            <td><a th:href="@{|/user/${user.id}|}">edit</a></td>
-        </tr>
-
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+    <th:block th:include="~{fragments/style :: legs}"/>
 </div>
-
+>
 </body>
 </html>

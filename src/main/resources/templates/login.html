@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="~{fragments/head :: head('Login')}" />
+    <th:block th:include="~{fragments/style :: head('Login')}"/>
 </head>
 <body>
-
-<div>Login page</div>
-<div>
-    <th:block th:insert="~{fragments/authentication :: footer('/login')}"/>
+<th:block th:include="~{fragments/navbarNavigation :: navbar}"/>
+<div class="container mt-5">
+    <div>Login page</div>
+    <div>
+        <th:block th:insert="~{fragments/authentication :: footer('/login', true, 'Sig in')}"/>
+    </div>
+    <th:block th:include="~{fragments/style :: legs}"/>
 </div>
 </body>
 </html>

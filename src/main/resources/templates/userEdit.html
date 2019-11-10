@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="~{fragments/head :: head('User edit')}" />
+    <th:block th:include="~{fragments/style :: head('User edit')}"/>
 </head>
 <body>
+<th:block th:include="~{fragments/navbarNavigation :: navbar}"/>
+<div class="container mt-5">
+    <form th:action="@{/user}" method="post">
+        <input type="text" name="username" th:value="${user.username}"/>
+        <input type="hidden" name="userId" th:value="${user.id}">
+        <button type="submit">Save</button>
+        <div th:each="rol : ${roles}">
+            <input type="checkbox" th:name="${rol}" th:checked="${user.roles.contains(rol)} ? true : false"
+                   th:text="${rol}"/>
+        </div>
+    </form>
 
-<form th:action="@{/user}" method="post">
-    <input type="text" name="username" th:value="${user.username}"/>
-    <input type="hidden" name="userId" th:value="${user.id}">
-    <button type="submit">Save</button>
-    <div th:each="rol : ${roles}">
-        <input type="checkbox" th:name="${rol}" th:checked="${user.roles.contains(rol)} ? true : false"
-               th:text="${rol}"/>
-    </div>
-
-</form>
-
+    <th:block th:include="~{fragments/style :: legs}"/>
+</div>
 </body>
 </html>

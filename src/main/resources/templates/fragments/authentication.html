@@ -1,13 +1,31 @@
-<div th:fragment="footer(aut)"  xmlns:th="http://www.thymeleaf.org">
+<div  th:fragment="footer(aut, isLogin, buttanName)"  xmlns:th="http://www.thymeleaf.org">
     <form th:action="@{${aut}}" method="post">
-        <div><label> Login: <input type="text" name="username" placeholder="Please enter user name"></label></div>
-        <div><label>Password: <input type="password" name="password" placeholder="Please enter user password"></label></div>
-        <button type="submit">Sig in</button>
+
+        <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">Login:</label>
+            <div class="col-sm-6">
+                <input type="text" name="username" placeholder="Please enter user name" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">Password:</label>
+            <div class="col-sm-6">
+                <input type="password" name="password" placeholder="Please enter user password" class="form-control">
+            </div>
+        </div>
+
+        <th:block th:if="${isLogin}">
+            <a th:href="@{registration}" class="mb-1">Add new user</a>
+        </th:block>
+        <button type="submit" class="btn btn-primary" th:text="${buttanName}"></button>
     </form>
 </div>
 
-<div th:fragment="logout(logout)"  xmlns:th="http://www.thymeleaf.org">
-    <form th:action="@{${logout}}" method="post">
-        <input type="submit" value="Sig Out">
+
+
+<div th:fragment="logout"  xmlns:th="http://www.thymeleaf.org">
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-primary">Sign Out</button>
     </form>
 </div>
