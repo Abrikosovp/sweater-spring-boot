@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <th:block th:include="~{fragments/head :: head('Main')}" />
 </head>
 <body>
 <a th:href="@{/user}">href - user list</a>
@@ -11,9 +10,10 @@
     <th:block th:include="~{fragments/authentication :: logout('/logout')}" />
 </div>
 <div>
-    <form th:action="@{/main}" method="post">
+    <form th:action="@{/main}" method="post" enctype="multipart/form-data">
         <input type="text" name="text" placeholder="Please enter text"/>
         <input type="text" name="tag" placeholder="Please enter tag"/>
+        <input type="file" name="file" placeholder="Please enter file">
         <button type="submit">Добавить</button>
     </form>
 </div>
@@ -31,6 +31,10 @@
     <span th:text="${mes.text}"></span>
     <i th:text="${mes.tag}"></i>
     <strong th:text="${mes.getAuthorName()}"></strong>
+    <strong th:text="${mes.getAuthorName()}"></strong>
+    <div th:if="${mes.fileNameExist()}">
+        <img th:src="@{|/img/${mes.fileName}|}">
+    </div>
 </div>
 </body>
 </html>

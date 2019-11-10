@@ -19,6 +19,7 @@ public class Message {
     private Long id;
     private String text;
     private String tag;
+    private String fileName;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -32,5 +33,9 @@ public class Message {
 
     public String getAuthorName() {
         return author != null ? author.getUsername() : "<non>";
+    }
+
+    public boolean fileNameExist() {
+        return fileName != null && !fileName.isEmpty();
     }
 }
