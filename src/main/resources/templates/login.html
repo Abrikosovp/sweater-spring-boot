@@ -6,9 +6,8 @@
 <body>
 <th:block th:include="~{fragments/navbarNavigation :: navbar}"/>
 <div class="container mt-5">
-    <div>Login page</div>
     <div>
-        <th:block th:insert="~{fragments/authentication :: footer('/login', true, 'Sig in')}"/>
+        <th:block th:insert="~{fragments/authentication :: footer('/login', true, 'Sig in', ${message})}"/>
     </div>
     <th:block th:include="~{fragments/style :: legs}"/>
 </div>

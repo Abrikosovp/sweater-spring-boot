@@ -6,13 +6,11 @@
 <body>
 <th:block th:include="~{fragments/navbarNavigation :: navbar}"/>
 <div class="container mt-5">
-    <div style="color:#ff0000">
-        <th:block th:if="${message != null}" th:text="${message}"/>
-    </div>
-    <div>Registration page</div>
+
     <div>
-        <th:block th:include="~{fragments/authentication :: footer('/registration', false, 'Create')}"/>
+        <th:block th:include="~{fragments/authentication :: footer('/registration', false, 'Create', ${message})}"/>
     </div>
+
     <th:block th:include="~{fragments/style :: legs}"/>
 </div>
 </body>
