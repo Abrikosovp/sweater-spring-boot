@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/style :: head('Edit')}"/>
+</head>
+<body>
+<th:block th:include="~{fragments/navbarNavigation :: navbar}"/>
+
+<div class="container mt-5">
+    <h5>[[${#httpServletRequest.remoteUser}]]</h5>
+
+    <form method="post" th:action="@{/user/profile}">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Password:</label>
+            <div class="col-sm-6">
+                <input type="password" name="password" placeholder="Please enter user password" class="form-control" th:value="${password}">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Password:</label>
+            <div class="col-sm-6">
+                <input type="email" name="email" placeholder="some@some.com" class="form-control" th:value="${email}">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" >Save</button>
+    </form>
+</div>
+<th:block th:include="~{fragments/style :: legs}"/>
+</body>
+</body>
+</html>
